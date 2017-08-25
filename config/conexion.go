@@ -31,6 +31,8 @@ func CloseConnection() {
 
 // CreateTables crea tablas segun estructuras
 func CreateTables() {
-	// conexion.DropTableIfExists(&Patient{})
+	conexion.DropTableIfExists(&models.Patient{})
+	conexion.DropTableIfExists(&models.Treatment{})
 	conexion.CreateTable(&models.Patient{})
+	conexion.CreateTable(&models.Treatment{})
 }
