@@ -1,11 +1,13 @@
 package models
 
 import "time"
+import "github.com/jinzhu/gorm"
 
 // Patient estructura de la tabla paciente
 type Patient struct {
-	ID              int64
-	FechaIngreso    time.Time
+	gorm.Model
+	PatientID              uint      `json:"patientId"`
+	FechaIngreso    time.Time `json:"fechaIngreso"`
 	NombreApellidos string
 	Edad            int
 	Sexo            string
@@ -19,9 +21,7 @@ type Patient struct {
 	Hipertension    bool
 	Otras           string
 	TratMedicos     string
-	Estado          string
-	CreatedAt       time.Time
-	UpdatedAt       time.Time
+	Estado          bool
 }
 
 // Patients slice de pacientes
