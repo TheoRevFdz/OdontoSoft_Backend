@@ -5,11 +5,10 @@ import "github.com/jinzhu/gorm"
 // Treatment estructura de la tabla tratamiento
 type Treatment struct {
 	gorm.Model
-	TreatmentID uint    `json:"treatmentId" gorm:"type: serial; primary_key"`
-	Work        string  `json:"work" gorm:"type: varchar(100)"`
-	Quantity    int     `json:"quantity"`
-	Cost        float64 `gorm:"type:decimal(36,2)"`
-	CodPatient  uint    `json:"codPatient"`
+	Work      string  `json:"work" gorm:"type: varchar(100)"`
+	Quantity  uint    `json:"quantity" gorm:"not null; type:integer"`
+	Cost      float64 `gorm:"not null; type:decimal(36,2)"`
+	IdPatient uint    `json:"idPatient" gorm:"not null"`
 }
 
 // Treatments slice de tratamientos

@@ -9,7 +9,7 @@ import (
 
 func main() {
 	var migrate string
-	flag.StringVar(&migrate, "migrate", "no", "Genera la migraci+on a la DB")
+	flag.StringVar(&migrate, "migrate", "no", "Genera la migración a la DB")
 	flag.Parse()
 	if migrate == "yes" {
 		log.Println("Inició la migración...")
