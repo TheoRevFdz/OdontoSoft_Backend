@@ -4,10 +4,10 @@ import (
 	"crypto/sha256"
 	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 
-	"github.com/TheoRev/gocomments/configuration"
-
+	"github.com/TheoRev/OdontoSoft_Backend/config"
 	"github.com/TheoRev/OdontoSoft_Backend/models"
 	"github.com/TheoRev/OdontoSoft_Backend/util"
 )
@@ -29,7 +29,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	pwd := fmt.Sprintf("%x", cod)
 	user.Password = pwd
 
-	db := configuration.GetConnection()
+	db := config.GetConnection()
 	defer db.Close()
 
 	err = db.Create(&user).Error
@@ -43,4 +43,38 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	m.Message = "Usuario creado con éxito"
 	m.Code = http.StatusCreated
 	util.DisplayMessage(w, m)
+}
+
+// Login autentifica el acceso de usuario al sistema
+func Login(w http.ResponseWriter, r *http.Request) {
+	user := models.User{}
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		fmt.Fprintf(w, "Error: %s\n", err)
+		return
+	}
+
+	db := config.GetConnection()
+	defer db.Close()
+
+	cod := sha256.Sum256([]byte(user.Password))
+	pwd := fmt.Sprintf("%x", cod)
+
+	db.Where("username=? and password=?", user.Username, pwd).First(&user)
+
+	if user.ID > 0 {
+		user.Password = ""
+		j, err := json.Marshal(user)
+		if err != nil {
+			log.Fatalf("Error al convertir el token a json: %s", err)
+		}
+		w.WriteHeader(http.StatusOK)
+		w.Write(j)
+	} else {
+		m := models.Message{
+			Message: "Usuario o clave no válido",
+			Code:    http.StatusUnauthorized,
+		}
+		util.DisplayMessage(w, m)
+	}
 }
