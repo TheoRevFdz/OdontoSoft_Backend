@@ -12,7 +12,7 @@ import (
 	"github.com/TheoRev/OdontoSoft_Backend/util"
 )
 
-// CreateUseer registra un nuevo usuario en la db
+// CreateUser registra un nuevo usuario en la db
 func CreateUser(w http.ResponseWriter, r *http.Request) {
 	user := models.User{}
 	m := models.Message{}
