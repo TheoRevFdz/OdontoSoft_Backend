@@ -117,7 +117,7 @@ func FindAllPatients(w http.ResponseWriter, r *http.Request) {
 
 	j, err := json.Marshal(patients)
 	if err != nil {
-		log.Fatalf("Error al convertir el token a json: %s", err)
+		log.Fatalf("Error al convertir los datos a json: %s", err)
 	}
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)

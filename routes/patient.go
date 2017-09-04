@@ -6,11 +6,13 @@ import (
 	"github.com/urfave/negroni"
 )
 
-// SetCreatePatientRouter estaablece la ruta para crear pacientes
-func SetCreatePatientRouter(router *mux.Router) {
-	prefix := "/api/create/patients"
+// SetCrudPatientRouter estaablece la ruta para crear pacientes
+func SetCrudPatientRouter(router *mux.Router) {
+	prefix := "/api/crud/patients"
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
 	subRouter.HandleFunc("/", controllers.CreatePatient).Methods("POST")
+	subRouter.HandleFunc("/", controllers.UpdatePatient).Methods("PUT")
+	subRouter.HandleFunc("/", controllers.UpdatePatient).Methods("DELETE")
 
 	router.PathPrefix(prefix).Handler(
 		negroni.New(
