@@ -11,6 +11,12 @@ func InitRoutes() *mux.Router {
 	SetLoginRouter(router)
 	SetCrudPatientRouter(router)
 	SetFindAllPatientRouter(router)
+	SetCrudTreatmentRouter(router)
+	SetFindAllTreatmentsRouter(router)
+	SetCrudControlRouter(router)
+	SetFindAllControlsRouter(router)
+	SetCrudWorkRouter(router)
+	SetFindAllWorksRouter(router)
 
 	return router
 }

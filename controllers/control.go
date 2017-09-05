@@ -96,7 +96,7 @@ func DeleteControl(w http.ResponseWriter, r *http.Request) {
 }
 
 // FindAllControl obtiene todos los tratamientos de la db
-func FindAllControl(w http.ResponseWriter, r *http.Request) {
+func FindAllControls(w http.ResponseWriter, r *http.Request) {
 	controls := models.Controls{}
 	msg := models.Message{}
 
