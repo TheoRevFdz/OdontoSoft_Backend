@@ -56,7 +56,7 @@ func UpdatePatient(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err = db.UpdateColumns(&patient).Error
+	err = db.Model(&models.Patient{}).UpdateColumns(&patient).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al actualizar el registro: %s", err)
 		msg.Code = http.StatusBadRequest
@@ -64,7 +64,7 @@ func UpdatePatient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	msg.Message = "Ppaciente actualizado con éxito"
+	msg.Message = "Paciente actualizado con éxito"
 	msg.Code = http.StatusCreated
 	util.DisplayMessage(w, msg)
 }
