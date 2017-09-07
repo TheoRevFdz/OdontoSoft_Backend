@@ -56,7 +56,7 @@ func UpdatePatient(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err = db.Model(&models.Patient{}).UpdateColumns(&patient).Error
+	err = db.Save(&patient).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al actualizar el registro: %s", err)
 		msg.Code = http.StatusBadRequest
@@ -86,7 +86,7 @@ func DeletePatient(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	patient.State = false
-	err = db.UpdateColumns(&patient).Error
+	err = db.Save(&patient).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al eliminar el registro: %s", err)
 		msg.Code = http.StatusBadRequest
@@ -119,6 +119,7 @@ func FindAllPatients(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("Error al convertir los datos a json: %s", err)
 	}
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }
