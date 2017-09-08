@@ -54,7 +54,7 @@ func UpdateWork(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err = db.UpdateColumns(&work).Error
+	err = db.Save(&work).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al actualizar el registro: %s", err)
 		msg.Code = http.StatusBadRequest
@@ -115,6 +115,7 @@ func FindAllWork(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("Error al convertir los datos a json: %s", err)
 	}
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }

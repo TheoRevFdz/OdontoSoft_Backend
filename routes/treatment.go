@@ -23,7 +23,7 @@ func SetCrudTreatmentRouter(router *mux.Router) {
 
 // SetFindAllTreatmentsRouter estaablece la ruta para obtener todos los tratamientos
 func SetFindAllTreatmentsRouter(router *mux.Router) {
-	prefix := "/api/controls"
+	prefix := "/api/treatments"
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
 	subRouter.HandleFunc("/", controllers.FindAllTreatments).Methods("GET")
 

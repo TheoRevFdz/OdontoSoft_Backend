@@ -8,7 +8,7 @@ import (
 
 // SetCrudWorkRouter estaablece la ruta para crear un trabajo
 func SetCrudWorkRouter(router *mux.Router) {
-	prefix := "/api/crud/treatment"
+	prefix := "/api/crud/work"
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
 	subRouter.HandleFunc("/", controllers.CreateWork).Methods("POST")
 	subRouter.HandleFunc("/", controllers.UpdateWork).Methods("PUT")
@@ -23,7 +23,7 @@ func SetCrudWorkRouter(router *mux.Router) {
 
 // SetFindAllWorksRouter estaablece la ruta para obtener todos los trabajos
 func SetFindAllWorksRouter(router *mux.Router) {
-	prefix := "/api/controls"
+	prefix := "/api/works"
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
 	subRouter.HandleFunc("/", controllers.FindAllWork).Methods("GET")
 
