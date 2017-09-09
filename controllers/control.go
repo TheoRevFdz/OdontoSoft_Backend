@@ -54,7 +54,7 @@ func UpdateControl(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err = db.UpdateColumns(&control).Error
+	err = db.Save(&control).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al actualizar el registro: %s", err)
 		msg.Code = http.StatusBadRequest
@@ -95,7 +95,7 @@ func DeleteControl(w http.ResponseWriter, r *http.Request) {
 	util.DisplayMessage(w, msg)
 }
 
-// FindAllControl obtiene todos los tratamientos de la db
+// FindAllControls obtiene todos los tratamientos de la db
 func FindAllControls(w http.ResponseWriter, r *http.Request) {
 	controls := models.Controls{}
 	msg := models.Message{}
@@ -115,6 +115,7 @@ func FindAllControls(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		log.Fatalf("Error al convertir los datos a json: %s", err)
 	}
+	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }
