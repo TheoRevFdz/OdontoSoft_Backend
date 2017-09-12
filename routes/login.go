@@ -17,7 +17,9 @@ func SetLoginRouter(router *mux.Router) {
 // SetLoginGUI router de la gui del login
 func SetLoginGUI(router *mux.Router) {
 	prefix := "/login"
+	// staticFiles := http.FileServer(http.Dir("assets"))
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
+	// subRouter.Handle("/assets/", http.StripPrefix("/assets/", staticFiles))
 	subRouter.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		template, err := template.ParseFiles("templates/login.html")
 		if err != nil {

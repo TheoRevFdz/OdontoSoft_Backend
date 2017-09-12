@@ -9,10 +9,11 @@ import (
 
 // SetLibsRouter estaablece la ruta para crear pacientes
 func SetLibsRouter(router *mux.Router) {
+	prefix := "/"
 	staticFiles := http.FileServer(http.Dir("assets"))
-	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
+	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(false)
 	// subRouter.HandleFunc("/", controllers.CreatePatient).Methods("POST")
-	subRouter.Handler
+	subRouter.Handle("/assets/", http.StripPrefix("/assets/", staticFiles))
 
 	router.PathPrefix(prefix).Handler(
 		negroni.New(
