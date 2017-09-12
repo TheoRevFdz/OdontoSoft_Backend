@@ -68,6 +68,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			log.Fatalf("Error al convertir el token a json: %s", err)
 		}
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write(j)
 	} else {

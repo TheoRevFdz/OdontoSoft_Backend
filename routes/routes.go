@@ -8,6 +8,7 @@ import (
 func InitRoutes() *mux.Router {
 	router := mux.NewRouter().StrictSlash(false)
 	SetUserRouter(router)
+	SetLoginGUI(router)
 	SetLoginRouter(router)
 	SetCrudPatientRouter(router)
 	SetFindAllPatientRouter(router)

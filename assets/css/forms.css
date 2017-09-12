@@ -1,0 +1,14 @@
+.card-panel{
+	width: 320pt;	
+	float: none;
+	/* background-color: #333;
+	border-color: #333; */
+}
+
+.login-field{
+	width: 100%;
+}
+
+.content{	
+	padding-top: 120pt;
+}
