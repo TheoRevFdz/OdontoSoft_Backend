@@ -7,8 +7,7 @@ import (
 // InitRoutes inicializa todas las rutas de los modelos
 func InitRoutes() *mux.Router {
 	router := mux.NewRouter().StrictSlash(false)
-	SetLoginGUI(router)
-	SetLibsRouter(router)
+	// SetLoginGUI(router)
 	SetUserRouter(router)
 	SetLoginRouter(router)
 	SetCrudPatientRouter(router)
@@ -19,6 +18,7 @@ func InitRoutes() *mux.Router {
 	SetFindAllControlsRouter(router)
 	SetCrudWorkRouter(router)
 	SetFindAllWorksRouter(router)
+	SetLibsRouter(router)
 
 	return router
 }
