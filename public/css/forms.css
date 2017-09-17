@@ -1,18 +1,43 @@
-.card-panel{
-	width: 320pt;	
+.card-panel {
+	width: 320pt;
 	float: none;
-	/* background-color: #333;
-	border-color: #333; */
 }
 
-.login-field{
+.login-field {
 	width: 100%;
 }
 
-.content{	
+.content {
 	padding-top: 120pt;
 }
 
-#btnIngresar{
+#btnIngresar {
 	font-weight: bold;
+}
+
+.form-content {
+	padding-top: 20pt;
+}
+
+.listado {
+	font-size: 10pt;
+}
+
+.btn-crud {
+	height: 25pt;
+}
+
+.btn-new {
+	float: right;
+	font-weight: bold;
+	color: white;
+}
+
+a:not([href]):not([tabindex]) {
+	color: white;
+	text-decoration: none;
+}
+
+.row{
+	/* text-align: center; */
 }
