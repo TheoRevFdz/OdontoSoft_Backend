@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="patient">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Pacientes</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+	</head>
+
+	<body>
+		<menu-bar></menu-bar>
+
+		<div class="container">
+			<div class="row">
+				<form ng-bind="loadPatients()">
+					<table>
+						<head></head>
+						<tbody>
+
+						</tbody>
+					</table>
+				</form>
+			</div>
+		</div>
+
+		<script src="js/lib/jquery-3.2.1.min.js"></script>
+		<script src="js/lib/bootstrap.min.js"></script>
+		<script src="js/lib/angular.min.js"></script>
+		<script src="js/controller/patient.js"></script>
+		<script src="js/directives.js"></script>
+		<script src="js/odontosoft.js"></script>
+	</body>
+
+</html>
