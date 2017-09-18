@@ -25,19 +25,23 @@
 
 .btn-crud {
 	height: 25pt;
+	cursor: pointer;
 }
 
 .btn-new {
 	float: right;
 	font-weight: bold;
 	color: white;
+	cursor: pointer;
+}
+
+.header-content{
+	background-color: #696969;
+	color: white;
+	font-weight: bold;
 }
 
 a:not([href]):not([tabindex]) {
 	color: white;
 	text-decoration: none;
-}
-
-.row{
-	/* text-align: center; */
 }

@@ -5,6 +5,12 @@
 
 			findAllPatient($scope, $http);
 
+			$scope.showNuevo = function () {
+				console.log("Click!!");
+				// $dialog.dialog({}).open('components/patient/form-patient.html');
+				$('#frmPatient').modal('show');
+			}
+
 			$scope.loadPatients = function () {}
 		}]);
 
@@ -19,9 +25,6 @@
 			function success(response) {
 				console.log(response.data);
 				$scope.patients = response.data;
-				// for(let i=0;i<response.data.length;i++){
-
-				// }
 			},
 			function error(response) {
 				alert(response);

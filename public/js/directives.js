@@ -13,5 +13,11 @@
 				restrict: 'E',
 				templateUrl: 'components/menu-bar.html'
 			};
+		})
+		.directive('listPatients', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/patient/form-patient.html'
+			};
 		});
 })();
