@@ -14,7 +14,7 @@
 				templateUrl: 'components/menu-bar.html'
 			};
 		})
-		.directive('listPatients', function () {
+		.directive('formPatient', function () {
 			return {
 				restrict: 'E',
 				templateUrl: 'components/patient/form-patient.html'

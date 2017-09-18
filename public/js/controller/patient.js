@@ -8,7 +8,7 @@
 			$scope.showNuevo = function () {
 				console.log("Click!!");
 				// $dialog.dialog({}).open('components/patient/form-patient.html');
-				$('#frmPatient').modal('show');
+				// $('#frmPatient').modal('show');
 			}
 
 			$scope.loadPatients = function () {}
