@@ -1,18 +1,132 @@
 <div id="frmPatient" class="modal fade" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+                <h6 class="modal-title title-modal">{{accion}} PACIENTE</h6>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
+            <div class="modal-body form-controls">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">ID</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId" disabled="true">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Fecha</label>
+                                <div class="col-10">
+                                    <input type="date" class="form-control" id="txtId" required pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Nombres y Apellidos</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Edad</label>
+                                <div class="col-10">
+                                    <input type="number" min="0" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Sexo</label>
+                                <div class="col-10">
+                                    <label class="custom-control custom-radio">
+                                        <input id="radio1" name="rbSexo" ng-model="sex" ng-click="getSex()" value="M" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description" style="font-size: 12pt;">Masculino</span>
+                                    </label>
+                                    <label class="custom-control custom-radio">
+                                        <input id="radio2" name="radio" ng-model="sex" ng-click="getSex()" value="F" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description" style="font-size: 12pt;">Femenino</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Fecha Nacimiento</label>
+                                <div class="col-10">
+                                    <input type="date" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Dirección</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Ocupación</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Tel. / Cel.</label>
+                                <div class="col-10">
+                                    <input type="tel" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Alergias</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Opeeraciones </label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Diabettes</label>
+                                <div class="col-10">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Hipertensión </label>
+                                <div class="col-10">
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description"></span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Otros</label>
+                                <div class="col-10">
+                                    <input type="text" class="form-control" id="txtId" name="txtId">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="formGroupExampleInput" class="col-2 col-form-label">Tratamientos  Médicos</label>
+                                <div class="col-10">
+                                    <textarea class="form-control" id="txtId" name="txtId"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <a type="button" class="btn btn-success btn-block btn-crud"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
             </div>
         </div>
     </div>

@@ -24,8 +24,8 @@
 }
 
 .btn-crud {
-	height: 25pt;
 	cursor: pointer;
+	font-weight: bold;
 }
 
 .btn-new {
@@ -39,6 +39,15 @@
 	background-color: #696969;
 	color: white;
 	font-weight: bold;
+}
+
+.title-modal{
+	font-weight: bold;
+	font-size: 14pt;
+}
+
+.form-controls{
+	font-size: 8pt;
 }
 
 a:not([href]):not([tabindex]) {
