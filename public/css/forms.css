@@ -41,6 +41,10 @@
 	font-weight: bold;
 }
 
+.footer-content{
+	/* border-top-color: #696969; */
+}
+
 .title-modal{
 	font-weight: bold;
 	font-size: 14pt;

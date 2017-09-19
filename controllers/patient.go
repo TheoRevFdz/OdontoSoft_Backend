@@ -107,7 +107,7 @@ func FindAllPatients(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err := db.Find(&patients).Error
+	err := db.Order("id desc").Find(&patients).Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
 		msg.Code = http.StatusBadRequest
