@@ -2,6 +2,10 @@
 	angular.module('patient.controller', [])
 		.controller('PatientController', ['$scope', '$http', function ($scope, $http) {
 			$scope.patients = {};
+			$scope.fec = moment().format('DD/MM/YYYY');
+			$scope.fecInit = "";
+			$scope.fecNac = "";
+
 			$scope.patient = {
 				ID: 0,
 				dateInit: "",
@@ -24,6 +28,9 @@
 			$scope.sex = ""
 
 			findAllPatient($scope, $http);
+			
+			var f = new Date();
+			console.log(moment("1991-08-04").format());
 
 			$scope.showNuevo = function () {
 				console.log("Click!!");
@@ -34,11 +41,13 @@
 			$scope.loadPatients = function () {}
 
 			$scope.newPatient = function () {
+				clearFields($scope);
 				$scope.accion = "NUEVO";
 			}
 
 			$scope.updatePatient = function (p) {
 				console.log(p);
+				clearFields($scope);
 				$scope.accion = "MODIFICAR";
 			}
 
@@ -74,11 +83,11 @@
 
 	function clearFields($scope) {
 		$scope.patient.ID = 0;
-		$scope.patient.dateInit = "";
+		$scope.patient.dateInit = new Date();
 		$scope.patient.nomApe = "";
 		$scope.patient.age = 0;
 		$scope.patient.sex = "";
-		$scope.patient.dateNac = "";
+		$scope.patient.dateNac = new Date("04/08/1991");
 		$scope.patient.address = "";
 		$scope.patient.ocupation = "";
 		$scope.patient.telCel = "";
