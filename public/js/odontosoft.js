@@ -11,4 +11,9 @@
 	var odonto = angular.module('odonto', [
 		'odonto.directives'
 	]);
+
+	var control = angular.module('control', [
+		'control.controller',
+		'control.directives'
+	]);
 })();

@@ -1,10 +1,68 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-<body>
-    
-</body>
+<html lang="es" ng-app="control">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Control</title>
+        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+    </head>
+
+    <body>
+
+        <menu-bar></menu-bar>
+
+        <div class="row" ng-controller="ControlController as ctrl">
+            <div class="col s12 m2"></div>
+            <div class="col s12 m8">
+                <div class="card #80d8ff light-blue accent-1 z-depth-3">
+                    <div class="card-content">
+                        <span class="card-title">CONTROL DEL TRATAMIENTO</span>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Fecha</th>
+                                    <th>Curación</th>
+                                    <th>Piezas Dent.</th>
+                                    <th>Descripción</th>
+                                    <th>Tratamiento</th>
+                                    <th>Pago</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody ng-repeat="c in controls">
+                                <tr>
+                                    <td>{{c.ID}}</td>
+                                    <td>{{c.fecha | date:"dd/MM/yyyy"}}</td>
+                                    <td>{{c.idWork}}</td>
+                                    <td>{{c.pieces}}</td>
+                                    <td>{{c.description}}</td>
+                                    <td>{{c.idTreatment}}</td>
+                                    <td>{{c.pago}}</td>
+                                    <td>{{c.total}}</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="card-action">
+                        <a href="#">This is a link</a>
+                        <a href="#">This is a link</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/lib/moment.min.js"></script>
+        <script src="js/lib/moment-with-locales.min.js"></script>
+        <script src="js/lib/jquery-3.2.1.min.js"></script>
+        <script src="js/lib/materialize.min.js"></script>
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/controller/control.js"></script>
+        <script src="js/directives.js"></script>
+        <script src="js/odontosoft.js"></script>
+    </body>
+
 </html>

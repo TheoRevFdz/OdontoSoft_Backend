@@ -1,5 +1,5 @@
 (function () {
-	angular.module('patient.controller2', [])
+	angular.module('patient.controller', [])
 		.controller('PatientController', ['$scope', '$http', function ($scope, $http) {
 			$scope.patients = {};
 			$scope.fec = moment().format('DD/MM/YYYY');
