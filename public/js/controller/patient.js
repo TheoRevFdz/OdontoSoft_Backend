@@ -1,5 +1,5 @@
 (function () {
-	angular.module('patient.controller', [])
+	angular.module('patient.controller2', [])
 		.controller('PatientController', ['$scope', '$http', function ($scope, $http) {
 			$scope.patients = {};
 			$scope.fec = moment().format('DD/MM/YYYY');
@@ -29,10 +29,10 @@
 
 			findAllPatient($scope, $http);
 
-			var f = new Date();
-			console.log(moment("1991-08-04").format() + "Z");
-			console.log(new Date(moment("2017-09-12").format()));
-			console.log(moment(new Date()).format());
+			// var f = new Date();
+			// console.log(moment("1991-08-04").format() + "Z");
+			// console.log(new Date(moment("2017-09-12").format()));
+			// console.log(moment(new Date()).format());
 
 			$scope.showNuevo = function () {
 				console.log("Click!!");
@@ -44,13 +44,14 @@
 
 			$scope.newPatient = function () {
 				clearFields($scope);
-				$scope.accion = "NUEVO";				
+				$scope.accion = "NUEVO";
 			}
 
 			$scope.updatePatient = function (p) {
 				console.log(p);
 				clearFields($scope);
 				$scope.accion = "MODIFICAR";
+				asignedFields(p, $scope);
 			}
 
 			$scope.getSex = function () {
@@ -58,10 +59,9 @@
 			}
 
 			$scope.save = function () {
+				$scope.patient.dateInit = moment($scope.patient.dateInit).format();
+				$scope.patient.dateNac = moment($scope.patient.dateNac).format();
 				doCreatePatient($scope, $http);
-				// console.log($scope.patient.dateInit);
-				// console.log($scope.patient.dateNac);
-				console.log($scope.patient);
 			}
 		}]);
 
@@ -72,11 +72,11 @@
 			headers: 'Content-Type: application/json',
 			data: {
 				ID: 0,
-				dateInit: moment($scope.patient.dateInit).format() + "Z",
+				dateInit: $scope.patient.dateInit,
 				nomApe: $scope.patient.nomApe,
 				age: $scope.patient.age,
 				sex: $scope.patient.sex,
-				dateNac: moment($scope.patient.dateNac).format() + "Z",
+				dateNac: $scope.patient.dateNac,
 				address: $scope.patient.address,
 				ocupation: $scope.patient.ocupation,
 				telCel: $scope.patient.telCel,
@@ -89,12 +89,13 @@
 			}
 		}).then(
 			function success(response) {
-				alert(response.data);
-				console.log(response);
+				alert(response.data.message);
+				$scope.patients = {};
+				findAllPatient($scope, $http);
 			},
 			function error(response) {
-				alert(response);
-				console.log(response);
+				alert(response.data.message);
+				console.log(response.data.message);
 			}
 		).catch(
 			function fail(response) {
@@ -119,6 +120,24 @@
 		$scope.patient.hipertension = false;
 		$scope.patient.others = "";
 		$scope.patient.treatMedics = "";
+	}
+
+	function asignedFields(p, $scope) {
+		$scope.patient.ID = p.ID;
+		$scope.patient.dateInit = new Date(p.dateInit);
+		$scope.patient.nomApe = p.nomApe;
+		$scope.patient.age = p.age;
+		$scope.patient.sex = p.sex;
+		$scope.patient.dateNac = new Date(p.dateNac);
+		$scope.patient.address = p.address;
+		$scope.patient.ocupation = p.ocupation;
+		$scope.patient.telCel = p.telCel;
+		$scope.patient.alergies = p.alergies;
+		$scope.patient.operations = p.operations;
+		$scope.patient.diabettes = p.diabettes;
+		$scope.patient.hipertension = p.hipertension;
+		$scope.patient.others = p.others;
+		$scope.patient.treatMedics = p.treatMedics;
 	}
 
 	function findAllPatient($scope, $http) {

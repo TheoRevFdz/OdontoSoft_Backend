@@ -3,7 +3,7 @@
 		.directive('menuBar', function () {
 			return {
 				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
+				templateUrl: 'components/menu-bar2.html'
 			};
 		});
 
@@ -11,7 +11,7 @@
 		.directive('menuBar', function () {
 			return {
 				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
+				templateUrl: 'components/menu-bar2.html'
 			};
 		})
 		.directive('formPatient', function () {
