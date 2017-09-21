@@ -28,9 +28,11 @@
 			$scope.sex = ""
 
 			findAllPatient($scope, $http);
-			
+
 			var f = new Date();
-			console.log(moment("1991-08-04").format());
+			console.log(moment("1991-08-04").format() + "Z");
+			console.log(new Date(moment("2017-09-12").format()));
+			console.log(moment(new Date()).format());
 
 			$scope.showNuevo = function () {
 				console.log("Click!!");
@@ -42,7 +44,7 @@
 
 			$scope.newPatient = function () {
 				clearFields($scope);
-				$scope.accion = "NUEVO";
+				$scope.accion = "NUEVO";				
 			}
 
 			$scope.updatePatient = function (p) {
@@ -56,23 +58,43 @@
 			}
 
 			$scope.save = function () {
+				doCreatePatient($scope, $http);
 				// console.log($scope.patient.dateInit);
 				// console.log($scope.patient.dateNac);
 				console.log($scope.patient);
 			}
 		}]);
 
-	function doCreatePatient(p, $http) {
+	function doCreatePatient($scope, $http) {
 		$http({
 			method: 'post',
-			url: 'api/patient/',
-			headers: 'Content-Type: application/json'
+			url: 'api/crud/patients/',
+			headers: 'Content-Type: application/json',
+			data: {
+				ID: 0,
+				dateInit: moment($scope.patient.dateInit).format() + "Z",
+				nomApe: $scope.patient.nomApe,
+				age: $scope.patient.age,
+				sex: $scope.patient.sex,
+				dateNac: moment($scope.patient.dateNac).format() + "Z",
+				address: $scope.patient.address,
+				ocupation: $scope.patient.ocupation,
+				telCel: $scope.patient.telCel,
+				alergies: $scope.patient.alergies,
+				operations: $scope.patient.operations,
+				diabettes: $scope.patient.diabettes,
+				hipertension: $scope.patient.hipertension,
+				others: $scope.patient.others,
+				treatMedics: $scope.patient.treatMedics
+			}
 		}).then(
 			function success(response) {
-
+				alert(response.data);
+				console.log(response);
 			},
 			function error(response) {
-
+				alert(response);
+				console.log(response);
 			}
 		).catch(
 			function fail(response) {
@@ -83,11 +105,11 @@
 
 	function clearFields($scope) {
 		$scope.patient.ID = 0;
-		$scope.patient.dateInit = new Date();
+		$scope.patient.dateInit = "";
 		$scope.patient.nomApe = "";
 		$scope.patient.age = 0;
 		$scope.patient.sex = "";
-		$scope.patient.dateNac = new Date("04/08/1991");
+		$scope.patient.dateNac = "";
 		$scope.patient.address = "";
 		$scope.patient.ocupation = "";
 		$scope.patient.telCel = "";

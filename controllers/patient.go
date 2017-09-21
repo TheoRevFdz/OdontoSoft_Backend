@@ -35,7 +35,7 @@ func CreatePatient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	m.Message = "Paciente creado con éxito"
+	m.Message = "Paciente creado exitosamente"
 	m.Code = http.StatusCreated
 	util.DisplayMessage(w, m)
 }
@@ -94,7 +94,7 @@ func DeletePatient(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	msg.Message = "Ppaciente eliminado con éxito"
+	msg.Message = "Paciente eliminado con éxito"
 	msg.Code = http.StatusCreated
 	util.DisplayMessage(w, msg)
 }
