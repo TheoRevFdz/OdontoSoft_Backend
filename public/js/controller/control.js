@@ -2,10 +2,17 @@
 	angular.module('control.controller', [])
 		.controller('ControlController', ['$scope', '$http', function ($scope, $http) {
 			$scope.controls = {};
+			$scope.accion = "";
 
 			findAllControls($scope, $http);
 
-			$(".button-collapse").sideNav();
+			$scope.newControl = function () {
+				$scope.accion = "NUEVO";
+			};
+
+			$scope.updateControl = function () {
+				$scope.accion = "MODIFICAR";
+			};
 		}]);
 
 	function findAllControls($scope, $http) {

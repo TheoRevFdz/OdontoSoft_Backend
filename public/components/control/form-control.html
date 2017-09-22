@@ -1,0 +1,43 @@
+<div id="frmControl" class="modal modal-fixed-footer" style="width: 350px;">
+    <div class="modal-content #212121 grey darken-4 white-text text-lighten-4">
+        <h5>{{accion}} CONTROL</h5>
+        <div class="input-field col s12">
+            <input id="last_name" type="text" class="validate" disabled="true" value="0" style="color: white;">
+            <label for="last_name" style="color: white;">ID</label>
+        </div>
+        <!-- <br> -->
+        <label for="txtFecha">Fecha</label>
+        <div class="input-field col s12">
+            <input id="txtFecha" type="date" class="datepicker">
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Curación</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="txtPiezas" type="number">
+            <label for="txtPiezas">Piezas Dentales</label>
+        </div>
+        <div class="input-field col s12">
+            <textarea class="materialize-textarea"></textarea>
+            <label for="txtFecha">Descripción</label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Tratamiento</label>
+        </div>
+        <div class="input-field col s12">
+            <input type="text" id="autocomplete-input" class="autocomplete">
+            <label for="autocomplete-input">Pago</label>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-action modal-close waves-effect waves-green btn-flat btn">GUARDAR</a>
+    </div>
+</div>
+
+<script>
+    $('#frmControl').modal({
+        dismissible: false
+    });
+</script>
