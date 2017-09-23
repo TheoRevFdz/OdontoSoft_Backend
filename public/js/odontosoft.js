@@ -16,4 +16,9 @@
 		'control.controller',
 		'control.directives'
 	]);
+
+	var work = angular.module('work', [
+		'work.controller',
+		'work.directives'
+	]);
 })();

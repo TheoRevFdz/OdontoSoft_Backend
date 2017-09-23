@@ -32,6 +32,20 @@
 			return {
 				restrict: 'E',
 				templateUrl: 'components/control/form-control.html'
+			};
+		});
+
+	angular.module('work.directives', [])
+		.directive('menuBar', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/menu-bar.html'
 			}
+		})
+		.directive('formWork', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/work/form-work.html'
+			};
 		});
 })();

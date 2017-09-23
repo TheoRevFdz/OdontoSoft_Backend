@@ -11,6 +11,10 @@
 	padding-top: 120pt;
 }
 
+.content-body{
+	background-color: #c7f7e0;
+}
+
 #btnIngresar {
 	font-weight: bold;
 }
