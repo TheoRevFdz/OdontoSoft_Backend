@@ -4,76 +4,78 @@
     <head>
         <meta charset="UTF-8">
         <title>Control</title>
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="css/materialize.min.css">
+        <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/font-awesome.min.css">
-        <link rel="stylesheet" href="css/mystyle.css">
+        <link rel="stylesheet" href="css/select-browser.css">
+        <link rel="stylesheet" href="css/forms.css">
     </head>
 
-    <body>
+    <body class="content-body">
 
         <menu-bar></menu-bar>
 
-        <form>
-            <div class="row" ng-controller="ControlController as ctrl">
-                <div class="col s12 m2"></div>
-                <div class="col s12 m8">
-                    <div class="card #80d8ff light-blue accent-1 z-depth-3">
-                        <div class="card-content">
-                            <span class="title-card">
-                            CONTROL DEL TRATAMIENTO
-                            <a class="waves-effect btn new-btn modal-trigger" style="font-weight: bold;" href="#frmControl" ng-click="newControl()"><i class="fa fa-plus fa-fw"></i>NUEVO</a>
-                        </span>
-                            <br>
-                            <br>
-                            <table class="striped highlight responsive-table #fafafa grey lighten-5">
-                                <thead class="#212121 grey darken-4 white-text text-lighten-4">
-                                    <tr>
-                                        <th style="background-color: #212121;">ID</th>
-                                        <th>Fecha</th>
-                                        <th>Curación</th>
-                                        <th>Piezas Dent.</th>
-                                        <th>Descripción</th>
-                                        <th>Tratamiento</th>
-                                        <th>Pago</th>
-                                        <th>Total</th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody ng-repeat="c in controls">
-                                    <tr>
-                                        <td>{{c.ID}}</td>
-                                        <td>{{c.fecha | date:"dd/MM/yyyy"}}</td>
-                                        <td>{{c.idWork}}</td>
-                                        <td>{{c.pieces}}</td>
-                                        <td>{{c.description}}</td>
-                                        <td>{{c.idTreatment}}</td>
-                                        <td>{{c.pago}}</td>
-                                        <td>{{c.total}}</td>
-                                        <td></td>
-                                    </tr>
-                                </tbody>
-                            </table>
+        <div class="container form-content">
+            <div class="row">
+                <div class="col" ng-controller="ControlController as ctrl">
+                    <form>
+                        <div class="card">
+                            <div class="card-header header-content" style="font-size: 14pt; text-align: center;">
+                                CONTROL DEL TRATAMIENTO
+                                <a class="btn btn-primary btn-new" data-toggle="modal" data-target="#frmControl" ng-click="newControl()"><i class="fa fa-plus" aria-hidden="true"></i> NUEVO</a>
+                            </div>
+                            <div class="card-block">
+                                <table class="table table-striped table-hover">
+                                    <thead class="thead-inverse">
+                                        <tr>
+                                            <th style="background-color: #212121;">ID</th>
+                                            <th>Fecha</th>
+                                            <th>Curación</th>
+                                            <th>Piezas Dent.</th>
+                                            <th>Descripción</th>
+                                            <th ng-show="false">Tratamiento</th>
+                                            <th>Pago</th>
+                                            <th>Total</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody ng-repeat="c in controls">
+                                        <tr>
+                                            <td>{{c.ID}}</td>
+                                            <td>{{c.fecha | date:"dd/MM/yyyy"}}</td>
+                                            <td>{{c.treatment.work.Id}}</td>
+                                            <td>{{c.pieces}}</td>
+                                            <td>{{c.description}}</td>
+                                            <td ng-show="false">{{c.treatmen.ID}}</td>
+                                            <td>{{c.pago}}</td>
+                                            <td>{{c.total}}</td>
+                                            <td>
+                                                <a class="btn btn-warning btn-crud" data-toggle="modal" data-target="#frmControl" ng-click="modifyControl(c)" title="Modificar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                <a class="btn btn-danger btn-crud" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                        <!-- <div class="card-action">
-                            <a href="#">This is a link</a>
-                            <a href="#">This is a link</a>
-                        </div> -->
-                    </div>
-                </div>
+                    </form>
 
-                <form-control></form-control>
+                    <form-control></form-control>
+
+                </div>
             </div>
-        </form>
+        </div>
+
+
 
         <script src="js/lib/moment.min.js"></script>
         <script src="js/lib/moment-with-locales.min.js"></script>
         <script src="js/lib/jquery-3.2.1.min.js"></script>
+        <script src="js/lib/jquery-ui.min.js"></script>
         <script src="js/lib/angular.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/lib/select-browser.js"></script>
         <script src="js/controller/control.js"></script>
         <script src="js/directives.js"></script>
         <script src="js/odontosoft.js"></script>
-        <script src="js/lib/materialize.min.js"></script>
-    </body>
 
 </html>

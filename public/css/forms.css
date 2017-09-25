@@ -1,3 +1,7 @@
+select {
+	width: 100%;
+}
+
 .card-panel {
 	width: 320pt;
 	float: none;
@@ -11,7 +15,7 @@
 	padding-top: 120pt;
 }
 
-.content-body{
+.content-body {
 	background-color: #c7f7e0;
 }
 
@@ -39,26 +43,35 @@
 	cursor: pointer;
 }
 
-.header-content{
+.header-content {
 	background-color: #696969;
 	color: white;
 	font-weight: bold;
 }
 
-.footer-content{
+.footer-content {
 	/* border-top-color: #696969; */
 }
 
-.title-modal{
+.title-modal {
 	font-weight: bold;
 	font-size: 14pt;
 }
 
-.form-controls{
+.form-controls {
 	font-size: 8pt;
+}
+
+.generic-form {
+	font-size: 10pt;
 }
 
 a:not([href]):not([tabindex]) {
 	color: white;
 	text-decoration: none;
+}
+
+.z-depth-3 {
+	-webkit-box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3);
 }

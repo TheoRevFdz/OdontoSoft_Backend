@@ -1,43 +1,67 @@
-<div id="frmControl" class="modal modal-fixed-footer" style="width: 350px;">
-    <div class="modal-content #212121 grey darken-4 white-text text-lighten-4">
-        <h5>{{accion}} CONTROL</h5>
-        <div class="input-field col s12">
-            <input id="last_name" type="text" class="validate" disabled="true" value="0" style="color: white;">
-            <label for="last_name" style="color: white;">ID</label>
+<div id="frmControl" class="modal fade" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header header-content">
+                <h6 class="modal-title title-modal">{{accion}} CONTROL</h6>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body generic-form">
+                <div class="container">
+                    <!-- <div class="row"> -->
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">ID</label>
+                        <div class="col-10">
+                            <input type="text" class="form-control" id="txtId" ng-model="work.ID" name="txtId" disabled="true">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">Fecha</label>
+                        <div class="col-10">
+                            <input type="date" class="form-control" id="txtId" ng-model="work.ID" name="txtId">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">Curación</label>
+                        <div class="col-10">
+                            <select select-browser class="form-control" style="width: 100%" name="cbWork" id="cbWork" ng-options="w as w.name for w in works track by w.ID" ng-model="work">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">Piezas Dentales</label>
+                        <div class="col-10">
+                            <input type="text" min="0" class="form-control" ng-model="work.price" id="txtAge" name="txtAge">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">Tratamiento</label>
+                        <div class="col-10">
+                            <!-- <select select2 class="form-control" style="width: 100%" name="cbTreatment" id="cbTreatment" ng-options="t as w.name for w in works track by w.ID"
+                                ng-model="work">
+                                <option value="">Select</option>
+                            </select> -->
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="formGroupExampleInput" class="col-2 col-form-label">Pago</label>
+                        <div class="col-10">
+                            <input type="number" min="0" class="form-control" ng-model="work.price" id="txtAge" name="txtAge">
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+            <div class="modal-footer footer-content">
+                <a type="button" class="btn btn-success btn-block btn-crud" ng-click="execute()" data-dismiss="modal"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            </div>
         </div>
-        <!-- <br> -->
-        <label for="txtFecha">Fecha</label>
-        <div class="input-field col s12">
-            <input id="txtFecha" type="date" class="datepicker">
-        </div>
-        <div class="input-field col s12">
-            <input type="text" id="autocomplete-input" class="autocomplete">
-            <label for="autocomplete-input">Curación</label>
-        </div>
-        <div class="input-field col s12">
-            <input id="txtPiezas" type="number">
-            <label for="txtPiezas">Piezas Dentales</label>
-        </div>
-        <div class="input-field col s12">
-            <textarea class="materialize-textarea"></textarea>
-            <label for="txtFecha">Descripción</label>
-        </div>
-        <div class="input-field col s12">
-            <input type="text" id="autocomplete-input" class="autocomplete">
-            <label for="autocomplete-input">Tratamiento</label>
-        </div>
-        <div class="input-field col s12">
-            <input type="text" id="autocomplete-input" class="autocomplete">
-            <label for="autocomplete-input">Pago</label>
-        </div>
-    </div>
-    <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect waves-green btn-flat btn">GUARDAR</a>
-    </div>
+    </div>    
 </div>
 
-<script>
-    $('#frmControl').modal({
-        dismissible: false
-    });
-</script>
+<!-- <script>
+    $('.chosen-select').chosen();
+</script> -->

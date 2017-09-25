@@ -21,4 +21,9 @@
 		'work.controller',
 		'work.directives'
 	]);
+
+	var treatment = angular.module('treatment', [
+		'treatment.controller',
+		'treatment.directives'
+	]);
 })();

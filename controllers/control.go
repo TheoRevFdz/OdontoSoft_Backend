@@ -104,6 +104,7 @@ func FindAllControls(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	err := db.Find(&controls).Error
+	// err := db.Model(&controls).Association("Treatment").Error
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
 		msg.Code = http.StatusBadRequest

@@ -25,7 +25,7 @@
 		.directive('menuBar', function () {
 			return {
 				restrict: 'E',
-				templateUrl: 'components/menu-bar2.html'
+				templateUrl: 'components/menu-bar.html'
 			};
 		})
 		.directive('formControl', function () {
@@ -33,6 +33,9 @@
 				restrict: 'E',
 				templateUrl: 'components/control/form-control.html'
 			};
+		})
+		.directive("selectBrowser", function ($timeout, $parse) {
+			return selectBrowser($timeout, $parse);
 		});
 
 	angular.module('work.directives', [])
@@ -48,4 +51,54 @@
 				templateUrl: 'components/work/form-work.html'
 			};
 		});
+
+	angular.module('tratment.directives' [])
+		.directive('menuBar', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/menu-bar.html'
+			}
+		});
+
+		
+
+	function selectBrowser($timeout, $parse) {
+		return {
+			restrict: 'AC',
+			require: 'ngModel',
+			link: function (scope, element, attrs) {
+				$timeout(function () {
+					element.select2();
+					element.select2Initialized = true;
+				});
+
+				var refreshSelect = function () {
+					if (!element.select2Initialized) return;
+					$timeout(function () {
+						element.trigger('change');
+					});
+				};
+
+				var recreateSelect = function () {
+					if (!element.select2Initialized) return;
+					$timeout(function () {
+						element.select2('destroy');
+						element.select2();
+					});
+				};
+
+				scope.$watch(attrs.ngModel, refreshSelect);
+
+				if (attrs.ngOptions) {
+					var list = attrs.ngOptions.match(/ in ([^ ]*)/)[1];
+					// watch for option list change
+					scope.$watch(list, recreateSelect);
+				}
+
+				if (attrs.ngDisabled) {
+					scope.$watch(attrs.ngDisabled, refreshSelect);
+				}
+			}
+		};
+	}
 })();

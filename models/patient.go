@@ -21,6 +21,7 @@ type Patient struct {
 	Others       string    `json:"others" gorm:"type:varchar(120)"`
 	TreatMedics  string    `json:"treatMedics" gorm:"type:varchar(120)"`
 	State        bool      `json:"state" gorm:"not null; type:boolean; default:TRUE"`
+	TreatmentID  uint      `json:"treatmentId"`
 }
 
 // Patients slice de pacientes

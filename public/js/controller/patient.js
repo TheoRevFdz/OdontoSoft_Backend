@@ -147,7 +147,7 @@
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
-				// console.log(response.data);
+				console.log(response.data);
 				$scope.patients = response.data;
 			},
 			function error(response) {
