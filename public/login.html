@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="login">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>LOGIN</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/forms.css">
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="row content">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-6" ng-controller="LoginController">
+                    <form id="frmLogin" ng-submit="ingresar()">
+                        <div class="card card-panel">
+                            <div class="card-header" style="font-size: 14pt; text-align: center;">
+                                <b>INICIE SESION</b>
+                            </div>
+                            <div class="card-block">
+                                <div class="form-inline">
+                                    <a href="#"><i class="fa fa-user fa-fw"></i></a>
+                                    <input type="text" id="username" name="username" placeholder="Username" class="form-control" ng-model="login.user" tabindex="1" style="width: 90%">
+                                </div>
+                                <br>
+                                <div class="form-inline">
+                                    <a href="#"><i class="fa fa-unlock-alt fa-fw"></i></a>
+                                    <input type="password" id="password" name="password" placeholder="Password" class="form-control" ng-model="login.pass"  tabindex="2" style="width: 90%">
+                                </div>
+                                <br>
+                                <button type="submit" href="#" class="btn btn-success btn-block" name="btnIngresar" id="btnIngresar"><i class="fa fa-sign-in fa-fw"></i> INGRESAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/lib/jquery-3.2.1.min.js"></script>
+        <script src="js/lib/bootstrap.min.js"></script>
+        <script src="js/lib/angular.min.js"></script>
+        <script src="js/odontosoft.js"></script>
+        <script src="js/controller/login.js"></script>
+    </body>
+
+</html>

@@ -1,36 +1,48 @@
 package config
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
+	"os"
 
-	"github.com/eduardogpg/gonv"
+	"github.com/jinzhu/gorm"
+	// Driver de postgresql
+	_ "github.com/lib/pq"
 )
 
-// DatabaseConfig estructura con atributos de configuracion
-type DatabaseConfig struct {
-	Username string
+type configuration struct {
+	Server   string
+	Port     string
+	User     string
 	Password string
-	Host     string
-	Port     int
-	Databse  string
+	Database string
 }
 
-var database *DatabaseConfig
+func getConfiguration() configuration {
+	var c configuration
+	file, err := os.Open("./config.json")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer file.Close()
 
-func init() {
-	database = &DatabaseConfig{}
-	database.Username = gonv.GetStringEnv("USER", "theo")
-	database.Password = gonv.GetStringEnv("PASSWORD", "ambu")
-	database.Host = gonv.GetStringEnv("HOST", "localhost")
-	database.Port = gonv.GetIntEnv("PORT", 5432)
-	database.Databse = gonv.GetStringEnv("DATABASE", "odontosoft")
+	err = json.NewDecoder(file).Decode(&c)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return c
 }
 
-// GetUrlDatabase obtiene la cadena de coneccion con la db
-func GetUrlDatabase() string {
-	return database.url()
-}
+// GetConnection obtiene y abre la conexion con la db
+func GetConnection() *gorm.DB {
+	c := getConfiguration()
+	dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", c.User, c.Password, c.Server, c.Port, c.Database)
+	db, err := gorm.Open("postgres", dsn)
+	if err != nil {
+		log.Fatal(err)
+	}
 
-func (this *DatabaseConfig) url() string {
-	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s?sslmode=disable", this.Username, this.Password, this.Host, this.Port, this.Databse)
+	return db
 }
