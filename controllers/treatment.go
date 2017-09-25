@@ -104,6 +104,10 @@ func FindAllTreatments(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	err := db.Find(&treatments).Error
+	for i := 0; i < len(treatments); i++ {
+		db.Model(&treatments[i]).Related(&treatments[i].Patient)
+	}
+
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
 		msg.Code = http.StatusBadRequest

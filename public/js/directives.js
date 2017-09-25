@@ -1,18 +1,12 @@
 (function () {
 	angular.module('odonto.directives', [])
 		.directive('menuBar', function () {
-			return {
-				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
-			};
+			return menuBar();
 		});
 
 	angular.module('patient.directives', [])
 		.directive('menuBar', function () {
-			return {
-				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
-			};
+			return menuBar();
 		})
 		.directive('formPatient', function () {
 			return {
@@ -23,10 +17,7 @@
 
 	angular.module('control.directives', [])
 		.directive('menuBar', function () {
-			return {
-				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
-			};
+			return menuBar();
 		})
 		.directive('formControl', function () {
 			return {
@@ -40,10 +31,7 @@
 
 	angular.module('work.directives', [])
 		.directive('menuBar', function () {
-			return {
-				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
-			}
+			return menuBar();
 		})
 		.directive('formWork', function () {
 			return {
@@ -52,15 +40,18 @@
 			};
 		});
 
-	angular.module('tratment.directives' [])
+	angular.module('treatment.directives', [])
 		.directive('menuBar', function () {
-			return {
-				restrict: 'E',
-				templateUrl: 'components/menu-bar.html'
-			}
+			return menuBar();
 		});
 
-		
+
+	function menuBar() {
+		return {
+			restrict: 'E',
+			templateUrl: 'components/menu-bar.html'
+		};
+	}
 
 	function selectBrowser($timeout, $parse) {
 		return {
