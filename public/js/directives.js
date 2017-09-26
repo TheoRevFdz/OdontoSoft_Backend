@@ -43,6 +43,15 @@
 	angular.module('treatment.directives', [])
 		.directive('menuBar', function () {
 			return menuBar();
+		})
+		.directive('formTreatment', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/treatment/form-treatment.html'
+			};
+		})
+		.directive('selectBrowser', function ($timeout, $parse) {
+			return selectBrowser($timeout, $parse);
 		});
 
 
