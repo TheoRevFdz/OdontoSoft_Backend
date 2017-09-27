@@ -14,19 +14,19 @@
 							<div class="form-group row">
 								<label for="formGroupExampleInput" class="col-2 col-form-label">ID</label>
 								<div class="col-10">
-									<input type="text" class="form-control" id="txtId" ng-model="patient.ID" name="txtId" disabled="true">
+									<input type="text" class="form-control" id="txtId" ng-model="treatment.ID" name="txtId" disabled="true">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="formGroupExampleInput" class="col-2 col-form-label">Paciente</label>
 								<div class="col-10">
 									<select select-browser class="form-control" style="width: 100%" name="" id="" ng-options="p as p.nomApe for p in patients track by p.ID"
-									    ng-model="treatment.patientId">
+									   ng-model="treatment.patientId">
 										<option value=""></option>
 									</select>
 								</div>
 							</div>
-							<a type="button" class="btn btn-sm btn-success btn-block btn-crud" ng-click="save()"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
+							<a type="button" class="btn btn-sm btn-success btn-block btn-crud" ng-click="execute()"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
 							<hr>
 							<div>
 								<h5 style="font-weight: bold;">
@@ -45,7 +45,7 @@
 								<label for="formGroupExampleInput" class="col-2 col-form-label">Curación</label>
 								<div class="col-10">
 									<select select-browser class="form-control" style="width: 100%" name="cbWork" id="cbWork" ng-options="w as w.name for w in works track by w.ID"
-									    ng-model="treatmentDetail.workId">
+									   ng-model="treatmentDetail.workId">
 										<option value="">Select</option>
 									</select>
 								</div>

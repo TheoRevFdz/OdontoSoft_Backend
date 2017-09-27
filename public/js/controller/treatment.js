@@ -11,7 +11,9 @@
 			};
 			$scope.treatmentDetail = {
 				ID: 0,
-				workId: ""
+				workId: "",
+				quantity: 0,
+				treatmentId: 0
 			};
 
 			findAllTreatments($scope, $http);
@@ -57,16 +59,41 @@
 			headers: 'Content-Type: application/json',
 			data: {
 				ID: 0,
-				patientId: $scope.treatment.patientId
+				patientId: $scope.treatment.patientId.ID
 			}
 		}).then(
 			function success(response) {
 				alert(response.data.message);
 				$scope.patients = {};
 				findAllTreatments($scope, $http);
+				findLastTreatment($scope, $http);
+				console.log($scope.treatment);
+				$scope.treatmentDetail.treatmentId = $scope.treatment.ID;
+				// clearFielsTreatments($scope);
 			},
-			function erroe(response) {
+			function error(response) {
+				console.log($scope.treatment);
 				alert(response.data.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response);
+			}
+		);
+	}
+
+	function findLastTreatment($scope, $http) {
+		$http({
+			method: 'GET',
+			url: 'api/last-treatment/',
+			headers: 'Content-Type: application/json'
+		}).then(
+			function success(response) {
+				// console.log(response.data);
+				$scope.treatment = response.data;
+			},
+			function error(response) {
+				alert(response.message);
 			}
 		).catch(
 			function fail(response) {
@@ -159,4 +186,10 @@
 			}
 		);
 	}
+
+	function clearFielsTreatments($scope) {
+		$scope.treatment.ID = 0;
+		$scope.treatment.patientId = 0;
+	}
+
 })();

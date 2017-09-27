@@ -123,3 +123,29 @@ func FindAllTreatments(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }
+
+// FindLastTreatment obtiene el ultimo tratamiento registrado en la db
+func FindLastTreatment(w http.ResponseWriter, r *http.Request) {
+	treatment := models.Treatment{}
+	msg := models.Message{}
+
+	db := config.GetConnection()
+	defer db.Close()
+
+	err := db.First(&treatment, 1).Error
+
+	if err != nil {
+		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
+		msg.Code = http.StatusBadRequest
+		util.DisplayMessage(w, msg)
+		return
+	}
+
+	j, err := json.Marshal(treatment)
+	if err != nil {
+		log.Fatalf("Error al convertir los datos a json: %s", err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(j)
+}
