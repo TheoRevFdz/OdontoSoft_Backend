@@ -9,6 +9,7 @@ type Treatment struct {
 	Patient           Patient           `json:"patient" gorm:"ForeignKey:TreatmentID;AssociationForeignKey:PatientID"`
 	TreatmentDetailID uint              `json:"treatmentDetailId"`
 	TreatmentsDetail  []TreatmentDetail `json:"treatmenetsDetail" gorm:"ForeignKey:TreatmentID;AssociationForeignKey:TreatmentDetailID"`
+	Select            bool              `json:"select" gorm:"-"`
 }
 
 // Treatments slice de tratamientos

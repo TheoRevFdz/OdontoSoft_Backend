@@ -34,11 +34,11 @@ func SetFindAllTreatmentsRouter(router *mux.Router) {
 	)
 }
 
-// SetLastTreatmentRouter establece la ruta para obtener el ultimo tratamiento registraado
+// SetLastTreatmentRouter establece la ruta para obtener el ultimo tratamiento registrado
 func SetLastTreatmentRouter(router *mux.Router) {
 	prefix := "/api/last-treatment"
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
-	subRouter.HandleFunc("/", controllers.FindAllTreatments).Methods("GET")
+	subRouter.HandleFunc("/", controllers.FindLastTreatment).Methods("GET")
 
 	router.PathPrefix(prefix).Handler(
 		negroni.New(

@@ -132,7 +132,7 @@ func FindLastTreatment(w http.ResponseWriter, r *http.Request) {
 	db := config.GetConnection()
 	defer db.Close()
 
-	err := db.First(&treatment, 1).Error
+	err := db.Last(&treatment).Error
 
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)

@@ -52,6 +52,12 @@
 		})
 		.directive('selectBrowser', function ($timeout, $parse) {
 			return selectBrowser($timeout, $parse);
+		})
+		.directive('formCuracion', function () {
+			return {
+				restrict: 'E',
+				templateUrl: 'components/treatment/form-curacion.html'
+			};
 		});
 
 
