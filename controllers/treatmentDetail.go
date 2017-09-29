@@ -5,10 +5,12 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
 
 	"github.com/TheoRev/OdontoSoft_Backend/config"
 	"github.com/TheoRev/OdontoSoft_Backend/models"
 	"github.com/TheoRev/OdontoSoft_Backend/util"
+	"github.com/gorilla/mux"
 )
 
 // CreateTreatmentDetail crea un registro de curaciones
@@ -95,7 +97,39 @@ func DeleteTreatmentDetail(w http.ResponseWriter, r *http.Request) {
 	util.DisplayMessage(w, msg)
 }
 
-// FindAllTreatments obtiene todos los tratamientos de la db
+// FindTreatmentsDetailByTreatmentID obtiene todos los tratamientos de la db
+func FindTreatmentsDetailByTreatmentID(w http.ResponseWriter, r *http.Request) {
+	tsd := models.TreatmentsDetail{}
+	msg := models.Message{}
+
+	vars := mux.Vars(r)
+	treatmentID, _ := strconv.Atoi(vars["id"])
+
+	db := config.GetConnection()
+	defer db.Close()
+
+	err := db.Where("treatment_id = ?", treatmentID).Find(&tsd).Error
+	for i := 0; i < len(tsd); i++ {
+		db.Model(&tsd[i]).Related(&tsd[i].Work)
+	}
+
+	if err != nil {
+		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
+		msg.Code = http.StatusBadRequest
+		util.DisplayMessage(w, msg)
+		return
+	}
+
+	j, err := json.Marshal(tsd)
+	if err != nil {
+		log.Fatalf("Error al convertir los datos a json: %s", err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(j)
+}
+
+// FindAllTreatmentsDetail obtiene todos los tratamientos de la db
 func FindAllTreatmentsDetail(w http.ResponseWriter, r *http.Request) {
 	tsd := models.TreatmentsDetail{}
 	msg := models.Message{}
@@ -104,6 +138,9 @@ func FindAllTreatmentsDetail(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	err := db.Find(&tsd).Error
+	for i := 0; i < len(tsd); i++ {
+		db.Model(&tsd[i]).Related(&tsd[i].Work)
+	}
 
 	if err != nil {
 		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)

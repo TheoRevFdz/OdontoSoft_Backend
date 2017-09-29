@@ -4,8 +4,10 @@
 			$scope.accion = "";
 			$scope.accionTD = "";
 			$scope.treatments = {};
+			$scope.treatmentsDetail = {};
 			$scope.patients = {};
 			$scope.works = {};
+
 			$scope.treatment = {
 				ID: 0,
 				patientId: "",
@@ -13,7 +15,7 @@
 			};
 			$scope.treatmentDetail = {
 				ID: 0,
-				workId: "",
+				workId: 0,
 				quantity: 0,
 				treatmentId: 0,
 				precio: 0
@@ -24,6 +26,7 @@
 			findAllTreatments($scope, $http);
 			getAllPatients($scope, $http);
 			getAllWorks($scope, $http);
+			// findAllTreatmentsDetail($scope, $http);
 
 			$scope.newTreatment = function () {
 				$scope.accion = "NUEVO";
@@ -57,7 +60,7 @@
 			}
 
 			$scope.selectTreatmentRow = function (id) {
-				console.log("ID: " + id);
+				// console.log("ID: " + id);
 				$scope.btnState = false;
 				for (let i = 0; i < $scope.treatments.length; i++) {
 					if ($scope.treatments[i].ID == id) {
@@ -73,6 +76,8 @@
 					}
 				}
 				$scope.treatmentDetail.treatmentId = id;
+				$scope.treatmentsDetail = {};
+				findTreatmentsDetailByTreatmentId($scope, $http);
 			};
 
 			$scope.trStyle = {
@@ -81,6 +86,7 @@
 			}
 
 			$scope.executeTD = function () {
+				console.log($scope.treatmentDetail);
 				switch ($scope.accionTD) {
 					case "AGREGAR":
 						createTD($scope, $http);
@@ -90,8 +96,39 @@
 						break;
 				}
 			};
-
 		}]);
+
+
+	function validarCamposTD() {
+
+	}
+
+	function createTD($scope, $http) {
+		$http({
+			method: 'POST',
+			url: 'api/crud/treatment-detail/',
+			headers: 'Content-Type: application/json',
+			data: {
+				ID: 0,
+				workId: $scope.treatmentDetail.workId.ID,
+				quantity: $scope.treatmentDetail.quantity,
+				treatmentId: $scope.treatmentDetail.treatmentId
+			}
+		}).then(
+			function success(response) {
+				alert(response.data.message);
+				// clearFielsTreatments($scope);
+			},
+			function error(response) {
+				console.log($scope.treatment);
+				alert(response.data.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response.data.message);
+			}
+		);
+	}
 
 	function createTreatment($scope, $http) {
 		$http({
@@ -217,6 +254,46 @@
 			function success(response) {
 				console.log(response.data);
 				$scope.treatments = response.data;
+			},
+			function error(response) {
+				alert(response.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response);
+			}
+		);
+	}
+
+	function findAllTreatmentsDetail($scope, $http) {
+		$http({
+			method: 'GET',
+			url: 'api/treatments-detail/',
+			headers: 'Content-Type: application/json'
+		}).then(
+			function success(response) {
+				console.log(response.data);
+				$scope.treatmentsDetail = response.data;
+			},
+			function error(response) {
+				alert(response.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response);
+			}
+		);
+	}
+
+	function findTreatmentsDetailByTreatmentId($scope, $http) {
+		$http({
+			method: 'GET',
+			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId,
+			headers: 'Content-Type: application/json'
+		}).then(
+			function success(response) {
+				console.log(response.data);
+				$scope.treatmentsDetail = response.data;
 			},
 			function error(response) {
 				alert(response.message);

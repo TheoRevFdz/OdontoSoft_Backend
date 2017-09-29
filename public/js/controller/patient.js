@@ -45,29 +45,41 @@
 			$scope.newPatient = function () {
 				clearFields($scope);
 				$scope.accion = "NUEVO";
-			}
+			};
 
-			$scope.updatePatient = function (p) {
+			$scope.modifyPatient = function (p) {
 				console.log(p);
 				clearFields($scope);
 				$scope.accion = "MODIFICAR";
 				asignedFields(p, $scope);
-			}
+			};
+
+			$scope.test = function (p) {
+				console.log(p);
+			};
 
 			$scope.getSex = function () {
 				// alert($scope.sex);
-			}
+			};
 
-			$scope.save = function () {
+			$scope.execute = function () {
 				$scope.patient.dateInit = moment($scope.patient.dateInit).format();
 				$scope.patient.dateNac = moment($scope.patient.dateNac).format();
-				doCreatePatient($scope, $http);
-			}
+				switch ($scope.accion) {
+					case "NUEVO":
+						createPatient($scope, $http);
+						break;
+					case "MODIFICAR":
+						updatePatient($scope, $http);
+						break;
+				}
+			};
+
 		}]);
 
-	function doCreatePatient($scope, $http) {
+	function creatFePatient($scope, $http) {
 		$http({
-			method: 'post',
+			method: 'POST',
 			url: 'api/crud/patients/',
 			headers: 'Content-Type: application/json',
 			data: {
@@ -86,6 +98,46 @@
 				hipertension: $scope.patient.hipertension,
 				others: $scope.patient.others,
 				treatMedics: $scope.patient.treatMedics
+			}
+		}).then(
+			function success(response) {
+				alert(response.data.message);
+				$scope.patients = {};
+				findAllPatient($scope, $http);
+			},
+			function error(response) {
+				alert(response.data.message);
+				console.log(response.data.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response);
+			}
+		);
+	}
+
+	function updatePatient($scope, $http) {
+		$http({
+			method: 'PUT',
+			url: 'api/crud/patients/',
+			headers: 'Content-Type: application/json',
+			data: {
+				ID: $scope.patient.ID,
+				dateInit: $scope.patient.dateInit,
+				nomApe: $scope.patient.nomApe,
+				age: $scope.patient.age,
+				sex: $scope.patient.sex,
+				dateNac: $scope.patient.dateNac,
+				address: $scope.patient.address,
+				ocupation: $scope.patient.ocupation,
+				telCel: $scope.patient.telCel,
+				alergies: $scope.patient.alergies,
+				operations: $scope.patient.operations,
+				diabettes: $scope.patient.diabettes,
+				hipertension: $scope.patient.hipertension,
+				others: $scope.patient.others,
+				treatMedics: $scope.patient.treatMedics,
+				state: true
 			}
 		}).then(
 			function success(response) {

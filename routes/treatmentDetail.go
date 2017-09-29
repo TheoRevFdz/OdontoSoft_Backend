@@ -33,3 +33,16 @@ func SetFindAllTreatmentsDetailRouter(router *mux.Router) {
 		),
 	)
 }
+
+// SetFindTreatmentsDetailByTreatmentIDRouter estaablece la ruta para obtener todos las curaciones de los tratamientos
+func SetFindTreatmentsDetailByTreatmentIDRouter(router *mux.Router) {
+	prefix := "/api/treatments-detail/{id:[0-9]+}"
+	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
+	subRouter.HandleFunc("/", controllers.FindTreatmentsDetailByTreatmentID).Methods("GET")
+
+	router.PathPrefix(prefix).Handler(
+		negroni.New(
+			negroni.Wrap(subRouter),
+		),
+	)
+}

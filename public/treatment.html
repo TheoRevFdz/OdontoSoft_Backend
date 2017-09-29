@@ -73,13 +73,16 @@
 													<th></th>
 												</tr>
 											</thead>
-											<tbody>
+											<tbody ng-repeat="d in treatmentsDetail">
 												<tr>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
-													<td></td>
+													<td>{{d.ID}}</td>
+													<td>{{d.works.name}}</td>
+													<td>{{d.quantity}}</td>
+													<td>{{d.works.price}}</td>
+													<td>
+														<a class="btn btn-sm btn-warning btn-crud" data-toggle="modal" data-target="#frmWork" ng-click="modifyWork(w)" title="Modificar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+														<a class="btn btn-sm btn-danger btn-crud" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+													</td>
 												</tr>
 											</tbody>
 										</table>
