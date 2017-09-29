@@ -77,7 +77,7 @@
 
 		}]);
 
-	function creatFePatient($scope, $http) {
+	function createPatient($scope, $http) {
 		$http({
 			method: 'POST',
 			url: 'api/crud/patients/',

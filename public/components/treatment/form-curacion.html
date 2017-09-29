@@ -34,13 +34,13 @@
 						<div class="form-group row">
 							<label for="formGroupExampleInput" class="col-2 col-form-label">Costo *</label>
 							<div class="col-10">
-								<input type="number" min="0" class="form-control" ng-model="treatmentDetail.workId.price" id="txtAge" name="txtAge" required="true">
+								<input type="number" min="0" class="form-control" disabled="true" ng-model="treatmentDetail.workId.price" id="txtAge" name="txtAge" required="true">
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="modal-footer footer-content">
-					<a type="submit" class="btn btn-success btn-block btn-crud" ng-click="executeTD()"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
+					<a type="submit" class="btn btn-success btn-block btn-crud" ng-click="executeTD()" data-dismiss="modal"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
 				</div>
 			</div>
 		</div>

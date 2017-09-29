@@ -30,6 +30,7 @@
 
 			$scope.newTreatment = function () {
 				$scope.accion = "NUEVO";
+				getAllPatients($scope, $http);
 			};
 
 			$scope.modifyTreatment = function () {
@@ -49,6 +50,8 @@
 
 			$scope.addTD = function () {
 				$scope.accionTD = "AGREGAR";
+				clearFields($scope);
+				getAllWorks($scope, $http);
 			};
 
 			$scope.modifyTD = function () {
@@ -103,6 +106,12 @@
 
 	}
 
+	function clearFields($scope) {
+		$scope.treatmentDetail.workId = 0;
+		$scope.treatmentDetail.quantity = 0;
+		// $scope.treatmentDetail.work
+	}
+
 	function createTD($scope, $http) {
 		$http({
 			method: 'POST',
@@ -117,6 +126,7 @@
 		}).then(
 			function success(response) {
 				alert(response.data.message);
+				findTreatmentsDetailByTreatmentId($scope, $http);
 				// clearFielsTreatments($scope);
 			},
 			function error(response) {

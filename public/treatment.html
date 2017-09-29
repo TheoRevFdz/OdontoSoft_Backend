@@ -70,6 +70,7 @@
 													<th>Curación</th>
 													<th>Cantidad</th>
 													<th>Precio</th>
+													<th>Subtotal</th>
 													<th></th>
 												</tr>
 											</thead>
@@ -79,6 +80,7 @@
 													<td>{{d.works.name}}</td>
 													<td>{{d.quantity}}</td>
 													<td>{{d.works.price}}</td>
+													<td>{{d.quantity * d.works.price}}</td>
 													<td>
 														<a class="btn btn-sm btn-warning btn-crud" data-toggle="modal" data-target="#frmWork" ng-click="modifyWork(w)" title="Modificar"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 														<a class="btn btn-sm btn-danger btn-crud" title="Eliminar"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
