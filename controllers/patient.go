@@ -123,3 +123,31 @@ func FindAllPatients(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }
+
+// FindPatientsWithoutTreatment obtiene todos los pacientes que no han iniciado tratamiento
+func FindPatientsWithoutTreatment(w http.ResponseWriter, r *http.Request) {
+	patients := models.Patients{}
+	msg := models.Message{}
+
+	db := config.GetConnection()
+	defer db.Close()
+
+	// err := db.Order("id desc").Find(&patients).Error
+	err := db.Joins("left join treatments on treatments.patient_id = patients.id").Where("treatments.patient_id is null").Find(&patients).Error
+	// err := db.Joins("left join treatments on treatments.id = patients.id").Find(&patients).Error
+
+	if err != nil {
+		msg.Message = fmt.Sprintf("Error al obtener los datos: %s", err)
+		msg.Code = http.StatusBadRequest
+		util.DisplayMessage(w, msg)
+		return
+	}
+
+	j, err := json.Marshal(patients)
+	if err != nil {
+		log.Fatalf("Error al convertir los datos a json: %s", err)
+	}
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	w.Write(j)
+}

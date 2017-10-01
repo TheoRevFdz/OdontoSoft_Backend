@@ -13,6 +13,7 @@ func InitRoutes() *mux.Router {
 	SetCrudTreatmentDetailRouter(router)
 	SetFindAllTreatmentsDetailRouter(router)
 	SetCrudTreatmentRouter(router)
+	SetFindPatientWhitoutTreatmentRouter(router)
 	SetCrudPatientRouter(router)
 	SetFindAllPatientRouter(router)
 	SetFindAllTreatmentsRouter(router)

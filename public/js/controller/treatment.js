@@ -24,17 +24,24 @@
 			$scope.btnState = true;
 
 			findAllTreatments($scope, $http);
-			getAllPatients($scope, $http);
+			// getPatientsWhitoutTreatment($scope, $http);
 			getAllWorks($scope, $http);
 			// findAllTreatmentsDetail($scope, $http);
 
 			$scope.newTreatment = function () {
 				$scope.accion = "NUEVO";
-				getAllPatients($scope, $http);
+				$scope.treatment.ID = 0
+				getPatientsWhitoutTreatment($scope, $http);
+				$scope.treatment.patientId = "";
 			};
 
-			$scope.modifyTreatment = function () {
+			$scope.modifyTreatment = function (t) {
+				getAllPatients($scope, $http);
 				$scope.accion = "MODIFICAR";
+				$scope.treatment.ID = t.ID;
+				console.log(t);
+				$scope.treatment.patientId = t.patient;
+				console.log($scope.treatment);
 			};
 
 			$scope.execute = function () {
@@ -43,6 +50,7 @@
 						createTreatment($scope, $http);
 						break;
 					case "MODIFICAR":
+						$scope.treatment.patientId = $scope.treatment.patientId.ID;
 						updateTreatment($scope, $http);
 						break;
 				}
@@ -222,8 +230,28 @@
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
-				console.log(response.data);
 				$scope.patients = response.data;
+				// console.log(response.data);
+			},
+			function error(response) {
+				alert(response.message);
+			}
+		).catch(
+			function fail(response) {
+				console.log("Excep: " + response);
+			}
+		);
+	}
+
+	function getPatientsWhitoutTreatment($scope, $http) {
+		$http({
+			method: 'GET',
+			url: 'api/patients-whitout-treatment/',
+			headers: 'Content-Type: application/json'
+		}).then(
+			function success(response) {
+				$scope.patients = response.data;
+				// console.log(response.data);
 			},
 			function error(response) {
 				alert(response.message);
@@ -242,8 +270,8 @@
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
-				console.log(response.data);
 				$scope.works = response.data;
+				// console.log(response.data);
 			},
 			function error(response) {
 				alert(response.message);
@@ -262,8 +290,8 @@
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
-				console.log(response.data);
 				$scope.treatments = response.data;
+				// console.log(response.data);
 			},
 			function error(response) {
 				alert(response.message);
@@ -302,8 +330,8 @@
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
-				console.log(response.data);
 				$scope.treatmentsDetail = response.data;
+				// console.log(response.data);
 			},
 			function error(response) {
 				alert(response.message);

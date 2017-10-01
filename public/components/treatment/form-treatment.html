@@ -20,14 +20,14 @@
 						<div class="col-10">
 							<select select-browser class="form-control" style="width: 100%" name="" id="" ng-options="p as p.nomApe for p in patients track by p.ID"
 							    ng-model="treatment.patientId">
-										<option value=""></option>
+										<option value="treatment.patientId">{{treatment.patientId.nomApe}}</option>
 									</select>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="modal-footer footer-content">
-				<a type="button" class="btn btn-success btn-block btn-crud" ng-click="execute()"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
+				<a type="button" class="btn btn-success btn-block btn-crud" ng-click="execute()" data-dismiss="modal"><i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> GUARDAR</a>
 			</div>
 		</div>
 	</div>

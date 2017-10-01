@@ -34,3 +34,16 @@ func SetFindAllPatientRouter(router *mux.Router) {
 		),
 	)
 }
+
+// SetFindPatientWhitoutTreatmentRouter estaablece la ruta para obtener los pacientes que no han iniciado un tratamiento
+func SetFindPatientWhitoutTreatmentRouter(router *mux.Router) {
+	prefix := "/api/patients-whitout-treatment"
+	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
+	subRouter.HandleFunc("/", controllers.FindPatientsWithoutTreatment).Methods("GET")
+
+	router.PathPrefix(prefix).Handler(
+		negroni.New(
+			negroni.Wrap(subRouter),
+		),
+	)
+}
