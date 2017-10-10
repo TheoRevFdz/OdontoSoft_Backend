@@ -39,8 +39,14 @@
 				getAllPatients($scope, $http);
 				$scope.accion = "MODIFICAR";
 				$scope.treatment.ID = t.ID;
-				console.log(t);
+				// console.log(t);
 				$scope.treatment.patientId = t.patient;
+				console.log($scope.treatment);
+			};
+
+			$scope.closeModalForm = function () {
+				$scope.treatment = null;
+				getAllPatients($scope, $http);
 				console.log($scope.treatment);
 			};
 
