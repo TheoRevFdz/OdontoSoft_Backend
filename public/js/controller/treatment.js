@@ -36,7 +36,9 @@
 			};
 
 			$scope.modifyTreatment = function (t) {
-				getAllPatients($scope, $http);
+				if($scope.treatment.treatmentId==null){
+					getAllPatients($scope, $http);
+				}
 				$scope.accion = "MODIFICAR";
 				$scope.treatment.ID = t.ID;
 				// console.log(t);
@@ -80,7 +82,7 @@
 				// console.log("ID: " + id);
 				$scope.btnState = false;
 				for (let i = 0; i < $scope.treatments.length; i++) {
-					if ($scope.treatments[i].ID == id) {
+					if ($scope.treatments[i].ID == id.ID) {
 						$scope.treatments[i].state = {
 							background: "#51a0c7",
 							color: "white"
@@ -332,12 +334,13 @@
 	function findTreatmentsDetailByTreatmentId($scope, $http) {
 		$http({
 			method: 'GET',
-			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId,
+			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId.ID,
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
 				$scope.treatmentsDetail = response.data;
-				// console.log(response.data);
+				console.log(response.data);
+				console.log($scope.treatmentDetail);
 			},
 			function error(response) {
 				alert(response.message);
