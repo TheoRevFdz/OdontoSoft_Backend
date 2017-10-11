@@ -36,9 +36,10 @@
 			};
 
 			$scope.modifyTreatment = function (t) {
-				if($scope.treatment.treatmentId==null){
+				// debugger;
+				// if ($scope.treatment.treatmentId == null || $scope.treatment.treatmentId == "") {
 					getAllPatients($scope, $http);
-				}
+				// }
 				$scope.accion = "MODIFICAR";
 				$scope.treatment.ID = t.ID;
 				// console.log(t);
@@ -47,9 +48,9 @@
 			};
 
 			$scope.closeModalForm = function () {
-				$scope.treatment = null;
+				// $scope.treatment = null;
 				getAllPatients($scope, $http);
-				console.log($scope.treatment);
+				// console.log($scope.treatment);
 			};
 
 			$scope.execute = function () {
@@ -79,7 +80,6 @@
 			}
 
 			$scope.selectTreatmentRow = function (id) {
-				// console.log("ID: " + id);
 				$scope.btnState = false;
 				for (let i = 0; i < $scope.treatments.length; i++) {
 					if ($scope.treatments[i].ID == id.ID) {
@@ -94,8 +94,10 @@
 						};
 					}
 				}
-				$scope.treatmentDetail.treatmentId = id;
-				$scope.treatmentsDetail = {};
+				console.log("ID: " + id.ID);
+				console.log($scope.treatmentDetail.treatmentId);
+				$scope.treatmentDetail.treatmentId = id.ID;
+				// $scope.treatmentsDetail = {};
 				findTreatmentsDetailByTreatmentId($scope, $http);
 			};
 
@@ -332,9 +334,10 @@
 	}
 
 	function findTreatmentsDetailByTreatmentId($scope, $http) {
+		console.log($scope.treatmentDetail.treatmentId);
 		$http({
 			method: 'GET',
-			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId.ID,
+			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId,
 			headers: 'Content-Type: application/json'
 		}).then(
 			function success(response) {
