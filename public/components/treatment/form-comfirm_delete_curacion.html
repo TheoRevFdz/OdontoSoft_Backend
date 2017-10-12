@@ -1,7 +1,7 @@
 <div id="frmComfirmDeleteCuracion" class="modal fade" role="dialog">
-	<div class="modal-dialog" role="document">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
-			<div class="modal-header header-content">
+			<div class="modal-header header-delete">
 				<h6 class="modal-title title-modal">ELIMINAR CURACION</h6>
 				<!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModalForm()">
 					<span aria-hidden="true">&times;</span>
@@ -9,21 +9,21 @@
 			</div>
 			<div class="modal-body form-controls">
 				<div class="container">
-					<h5>¿Está seguro de eliminar la curación "" que estárelacionado al paciente: ?</h5>
+					<h5>¿Está seguro de eliminar la curación "{{work.works.name}}" enlazado al paciente: {{patientSelected.nomApe}}?</h5>
 				</div>
 			</div>
-			<div class="modal-footer footer-content">
-				<a type="button" class="btn btn-success" ng-click="" data-dismiss="modal">
-					<i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> SI</a>
-				<a type="button" class="btn btn-success" ng-click="" data-dismiss="modal">
-					<i class="fa fa-floppy-o fa-fw" aria-hidden="true"></i> NO</a>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-outline-success btn-sm" data-dismiss="modal">
+					<i class="fa fa-check fa-fw" aria-hidden="true"></i>SI</button>
+				<button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="modal" ng-click="resetWork()">
+					<i class="fa fa-times fa-fw" aria-hidden="true"></i>NO</button>
 			</div>
 		</div>
 	</div>
 </div>
 
 <script>
-	$('#frmTreatment').modal({
+	$('#frmComfirmDeleteCuracion').modal({
 		backdrop: 'static',
 		show: false,
 		keyboard: false
