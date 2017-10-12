@@ -39,7 +39,6 @@
         $scope.treatment.patientId = "";
       };
 
-<<<<<<< HEAD
       $scope.cont = 0;
 
       $scope.beforeDelete = function(d) {
@@ -49,25 +48,6 @@
         $scope.cont++;
         console.log($scope.cont);
       };
-=======
-			$scope.modifyTreatment = function (t) {
-				// debugger;
-				// if ($scope.treatment.treatmentId == null || $scope.treatment.treatmentId == "") {
-					getAllPatients($scope, $http);
-				// }
-				$scope.accion = "MODIFICAR";
-				$scope.treatment.ID = t.ID;
-				// console.log(t);
-				$scope.treatment.patientId = t.patient;
-				console.log($scope.treatment);
-			};
-
-			$scope.closeModalForm = function () {
-				// $scope.treatment = null;
-				getAllPatients($scope, $http);
-				// console.log($scope.treatment);
-			};
->>>>>>> 379c5edb980c3cfde48bcf4c486a4922bd10ede5
 
       $scope.modifyTreatment = function(t) {
         if ($scope.treatment.treatmentId == null) {
@@ -102,35 +82,11 @@
         }
       };
 
-<<<<<<< HEAD
       $scope.addTD = function() {
         $scope.accionTD = "AGREGAR";
         clearFields($scope);
         getAllWorks($scope, $http);
       };
-=======
-			$scope.selectTreatmentRow = function (id) {
-				$scope.btnState = false;
-				for (let i = 0; i < $scope.treatments.length; i++) {
-					if ($scope.treatments[i].ID == id.ID) {
-						$scope.treatments[i].state = {
-							background: "#51a0c7",
-							color: "white"
-						};
-					} else {
-						$scope.treatments[i].state = {
-							background: "#eceeef",
-							color: "black"
-						};
-					}
-				}
-				console.log("ID: " + id.ID);
-				console.log($scope.treatmentDetail.treatmentId);
-				$scope.treatmentDetail.treatmentId = id.ID;
-				// $scope.treatmentsDetail = {};
-				findTreatmentsDetailByTreatmentId($scope, $http);
-			};
->>>>>>> 379c5edb980c3cfde48bcf4c486a4922bd10ede5
 
       $scope.modifyTD = function() {
         $scope.accionTD = "MODIFICAR";
@@ -367,7 +323,7 @@
       .then(
         function success(response) {
           $scope.treatments = response.data;
-          // console.log(response.data);
+          console.log(response.data);
         },
         function error(response) {
           alert(response.message);
@@ -378,7 +334,6 @@
       });
   }
 
-<<<<<<< HEAD
   function findAllTreatmentsDetail($scope, $http) {
     $http({
       method: "GET",
@@ -398,29 +353,6 @@
         console.log("Excep: " + response);
       });
   }
-=======
-	function findTreatmentsDetailByTreatmentId($scope, $http) {
-		console.log($scope.treatmentDetail.treatmentId);
-		$http({
-			method: 'GET',
-			url: 'api/treatments-detail/' + $scope.treatmentDetail.treatmentId,
-			headers: 'Content-Type: application/json'
-		}).then(
-			function success(response) {
-				$scope.treatmentsDetail = response.data;
-				console.log(response.data);
-				console.log($scope.treatmentDetail);
-			},
-			function error(response) {
-				alert(response.message);
-			}
-		).catch(
-			function fail(response) {
-				console.log("Excep: " + response);
-			}
-		);
-	}
->>>>>>> 379c5edb980c3cfde48bcf4c486a4922bd10ede5
 
   function findTreatmentsDetailByTreatmentId($scope, $http, id) {
     $http({
