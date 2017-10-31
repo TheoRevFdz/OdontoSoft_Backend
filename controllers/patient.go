@@ -28,6 +28,7 @@ func CreatePatient(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	err = db.Create(&patient).Error
+	w.Header().Set("Access-Control-Allow-Origin", "*")
 	if err != nil {
 		m.Message = fmt.Sprintf("Error al crear el registro: %s", err)
 		m.Code = http.StatusBadRequest
