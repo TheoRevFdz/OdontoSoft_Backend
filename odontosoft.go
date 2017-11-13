@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/rs/cors"
 	"github.com/urfave/negroni"
 
 	"github.com/TheoRev/OdontoSoft_Backend/migration"
@@ -26,6 +27,13 @@ func main() {
 
 	router := routes.InitRoutes()
 	neg := negroni.Classic()
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{"*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"Accept", "content-type", "Content-Length", "Accept-Encoding", "X-CSRF-Token", "Authorization"},
+		AllowCredentials: true,
+	})
+	neg.Use(c)
 	neg.UseHandler(router)
 
 	server := &http.Server{

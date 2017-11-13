@@ -13,6 +13,7 @@ func SetCrudPatientRouter(router *mux.Router) {
 	subRouter := mux.NewRouter().PathPrefix(prefix).Subrouter().StrictSlash(true)
 	subRouter.Headers("Access-Control-Allow-Origin", "*")
 	subRouter.HandleFunc("/", controllers.CreatePatient).Methods("POST")
+	subRouter.HandleFunc("/", controllers.CreatePatient).Methods("OPTIONS")
 	subRouter.HandleFunc("/", controllers.UpdatePatient).Methods("PUT")
 	subRouter.HandleFunc("/", controllers.DeletePatient).Methods("DELETE")
 
