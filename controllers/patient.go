@@ -38,6 +38,7 @@ func CreatePatient(w http.ResponseWriter, r *http.Request) {
 
 	m.Message = "Paciente creado exitosamente"
 	m.Code = http.StatusCreated
+	// w.WriteHeader(http.StatusCreated)
 	util.DisplayMessage(w, m)
 }
 
