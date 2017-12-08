@@ -1,0 +1,26 @@
+<!-- <h2>Pacientes</h2> -->
+<div class="panel"
+     id="pnlControlPatient">
+  <button id="btnModify"
+          type="button">MODIFICAR</button>
+  <button id="btnAdd"
+          type="button">AGREGAR</button>
+</div>
+<div class="data-table"
+     id="tblPatients"></div>
+<div id="frmPatient"
+     title="PACIENTE">
+        <div>
+                <label>ID</label>
+                <input id="txtId" maxlength="10" required>
+                <br/>
+                <br/>
+                <label>Fecha</label>
+                <p-datepicker showOn="button"></p-datepicker>
+                <br/>
+                <br/>
+                <label>Nombre y Ape.</label>
+                <input id="txtNomApe" name="part_number" required>
+        </div>
+    </div>
+<script src="../../js/controller/patient/patientController.js"></script>

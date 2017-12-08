@@ -123,7 +123,7 @@ func FindAllPatients(w http.ResponseWriter, r *http.Request) {
 		log.Fatalf("Error al convertir los datos a json: %s", err)
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	// w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.WriteHeader(http.StatusOK)
 	w.Write(j)
 }
